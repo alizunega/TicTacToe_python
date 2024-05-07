@@ -90,8 +90,6 @@ def victory_for(board, sign):
             if board[i][j] == sign:
                 sign_list.append((i, j))
 
-    print(sign_list, sign)
-
     if len(sign_list) < 3:
         return win
     else:
@@ -105,7 +103,6 @@ def victory_for(board, sign):
             if contador >= 3:
                 ganador += 1
 
-        print("listas ganadoras: ", ganador)
         if ganador >= 1:
             win = True
 
