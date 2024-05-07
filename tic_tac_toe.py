@@ -4,7 +4,7 @@ from random import choice
 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 
-####################################################
+######################## Dibuja el tablero ############################
 def display_board(board):
     # La función acepta un parámetro el cual contiene el estado actual del tablero
     # y lo muestra en la consola.
@@ -90,24 +90,24 @@ def victory_for(board, sign):
             if board[i][j] == sign:
                 sign_list.append((i, j))
 
+    print(sign_list, sign)
+
     if len(sign_list) < 3:
         return win
     else:
-        for lista in wins_tuples:
-            if sign_list in lista:
-                win = True
+        ganador = 0
+        for fila in wins_tuples:
+            contador = 0
+            for elem in fila:
+                if elem in sign_list:
+                    contador += 1
 
-    # if len(sign_list) < 3:
-    #     return win
-    # else:
-    #     for lista in wins_tuples:
-    #         for i in range(len(sign_list) - 1):
-    #             ganadores = 0
-    #             if sign_list[i] in lista:
-    #                 ganadores += 1
+            if contador >= 3:
+                ganador += 1
 
-    #     if ganadores >= 1:
-    #         win = True
+        print("listas ganadoras: ", ganador)
+        if ganador >= 1:
+            win = True
 
     return win
 
