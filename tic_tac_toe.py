@@ -1,4 +1,4 @@
-from random import randrange
+from random import choice
 
 # valor original de board
 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -29,12 +29,14 @@ def enter_move(board):
     print(user_choice)
 
     if user_choice in range(1, 10):
+        tomado = False
         for i in range(0, 3):
             for j in range(0, 3):
                 if (i, j) in lista_libres and board[i][j] == user_choice:
                     board[i][j] = "O"
-                else:
-                    print(f"Ingrese un nuevo valor,{user_choice} este ya fue tomado")
+                    tomado = True
+        if not tomado:
+            print(f"Ingrese un nuevo valor,{user_choice} este ya fue tomado")
 
     else:
         print("El movimiento debe ser un valor entre 1 y 9")
@@ -62,14 +64,14 @@ def victory_for(board, sign):
     # La función analiza el estatus del tablero para verificar si
     # el jugador que utiliza las 'O's o las 'X's ha ganado el juego.
     wins_tuples = [
-        ((0, 0), (1, 0), (2, 0)),
-        ((0, 0), (0, 1), (0, 2)),
-        ((0, 0), (1, 1), (2, 2)),
-        ((1, 0), (1, 1), (1, 2)),
-        ((2, 0), (2, 1), (2, 2)),
-        ((0, 1), (1, 1), (2, 1)),
-        ((0, 2), (1, 2), (2, 2)),
-        ((0, 2), (1, 1), (2, 0)),
+        [(0, 0), (1, 0), (2, 0)],
+        [(0, 0), (0, 1), (0, 2)],
+        [(0, 0), (1, 1), (2, 2)],
+        [(1, 0), (1, 1), (1, 2)],
+        [(2, 0), (2, 1), (2, 2)],
+        [(0, 1), (1, 1), (2, 1)],
+        [(0, 2), (1, 2), (2, 2)],
+        [(0, 2), (1, 1), (2, 0)],
     ]
 
     sign_list = []
@@ -78,16 +80,10 @@ def victory_for(board, sign):
             if board[i][j] == sign:
                 sign_list.append((i, j))
 
-    for tupla in wins_tuples:
-        if tupla in sign_list:
-            if sign == "X":
-                print("Has perdido")
-                win = True
-            elif sign == "O":
-                print("Has ganado")
-                win = True
-            else:
-                print("No hay ganador")
+    for lista in wins_tuples:
+        if wins_tuples[lista] in sign_list:
+            win = True
+
     return win
 
 
@@ -95,16 +91,13 @@ def victory_for(board, sign):
 def draw_move(board):
     # La función dibuja el movimiento de la máquina y actualiza el tablero.
     lista_libres = make_list_of_free_fields(board)
-    mac_choice = randrange(1, 10)
-    print(mac_choice)
 
-    if mac_choice in range(1, 10):
-        for i in range(0, 3):
-            for j in range(0, 3):
-                if (i, j) in lista_libres and board[i][j] == mac_choice:
-                    board[i][j] = "X"
-                else:
-                    print("Valor ocupado, la maquina debe seleccionar uno nuevo")
+    if lista_libres:  # Verificar si hay campos libres disponibles
+        # Elegir aleatoriamente una casilla de la lista de campos libres
+        i, j = choice(lista_libres)
+        board[i][j] = "X"
+    else:
+        print("No quedan movimientos por hacer")
 
     display_board(board)
 
@@ -123,16 +116,16 @@ if comienzo.lower() == "y":
     while count <= 5:  # controla que se haya hecho un minimo de movimientos
         enter_move(board)  # movimiento de usuario y actualiza
         draw_move(board)  # movimiento de maquina y actualiza
-        count = +2
+        count += 2
 
     free = make_list_of_free_fields(board)
-    result = victory_for(board, "X")
-    while not result:
-        if free != []:
-            enter_move(board)
-            draw_move(board)
-            result = victory_for(board, "X")
-        else:
-            print("No quedan movimientos por hacer")
+    while not victory_for(board, "O") and free != []:
+        enter_move(board)
+        draw_move(board)
+        result = victory_for(board, "X")
+        free = make_list_of_free_fields(board)
+
+    if not result:
+        print("No quedan movimientos por hacer")
 else:
     print("Lamento que no quieras jugar")
