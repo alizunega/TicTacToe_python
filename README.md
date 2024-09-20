@@ -31,7 +31,7 @@ Proyecto Trabajo Final Python Cisco TaTeTi
 <div>
     <p>Python3</p>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=phyton&theme=dark" />
+    <img src="https://skillicons.dev/icons?i=py&theme=dark" />
   </a>
 </div>
 
