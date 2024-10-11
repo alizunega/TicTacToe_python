@@ -10,7 +10,7 @@ Proyecto Trabajo Final Python Cisco TaTeTi
 
 2- Navega al directorio del proyecto:
 
-`cd challenge-portfolio-web`
+`cd TicTacToe_python`
 
 3- Abre el archivo tic_tac_toe.py en la terminal
 
