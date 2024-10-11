@@ -28,13 +28,11 @@ Proyecto Trabajo Final Python Cisco TaTeTi
 
 ## Construido Con :hammer_and_wrench:
 
-<div>
-    <p>Python3</p>
+<p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=py&theme=dark" />
+    <img src="https://skillicons.dev/icons?i=py" />
   </a>
-</div>
-
+</p>
 ## Autores :black_nib:
 
 - Alicia Zuñega - [@alizunega](https://github.com/alizunega)
