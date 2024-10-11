@@ -33,6 +33,8 @@ Proyecto Trabajo Final Python Cisco TaTeTi
     <img src="https://skillicons.dev/icons?i=py" />
   </a>
 </p>
-## Autores :black_nib:
+
+
+## Desarrollado por:  :black_nib:
 
 - Alicia Zuñega - [@alizunega](https://github.com/alizunega)
